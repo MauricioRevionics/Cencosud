@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cencosud Program One-Pager</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --primary: #0052CC;
+    --primary-light: #4C9AFF;
+    --primary-dark: #0747A6;
+    --bg-blue-1: #E9F2FF;
+    --bg-blue-2: #DEEBFF;
+    --bg-blue-3: #B3D4FF;
+    --bg-blue-4: #CCE0FF;
+    --on-track: #00875A;
+    --on-track-bg: #E3FCEF;
+    --minor-issues: #FF991F;
+    --minor-issues-bg: #FFFAE6;
+    --significant-issues: #DE350B;
+    --significant-issues-bg: #FFEBE6;
+    --back-on-track: #0065FF;
+    --back-on-track-bg: #DEEBFF;
+    --text-dark: #172B4D;
+    --text-medium: #44546F;
+    --text-light: #626F86;
+    --border: #DFE1E6;
+    --white: #FFFFFF;
+    --shadow: 0 1px 3px rgba(9, 30, 66, 0.13);
+    --shadow-lg: 0 4px 12px rgba(9, 30, 66, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #F4F7FC 0%, #E9F0FA 100%);
+    color: var(--text-dark);
+    line-height: 1.5;
+    padding: 32px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    color: var(--white);
+    padding: 36px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .header-subtitle {
+    font-size: 14px;
+    opacity: 0.85;
+    font-weight: 400;
+  }
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .meta-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    opacity: 0.7;
+    font-weight: 600;
+  }
+  .meta-value {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .overall-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .status-dot-lg {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #36B37E;
+    box-shadow: 0 0 8px rgba(54,179,126,0.5);
+  }
+
+  /* ── Legend Bar ── */
+  .legend-bar {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 14px 48px;
+    background: var(--bg-blue-1);
+    border-bottom: 1px solid var(--border);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-medium);
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .legend-dot.on-track { background: var(--on-track); }
+  .legend-dot.minor-issues  { background: var(--minor-issues); }
+  .legend-dot.significant-issues{ background: var(--significant-issues); }
+  .legend-dot.back-on-track{ background: var(--back-on-track); }
+
+  /* ── Content ── */
+  .content { padding: 32px 48px 48px; }
+
+  .section {
+    margin-bottom: 36px;
+  }
+  .section:last-child { margin-bottom: 0; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background: var(--bg-blue-2);
+    color: var(--primary);
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: -0.2px;
+  }
+
+  /* ── Status Snapshot Table ── */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    font-size: 13px;
+  }
+  thead th {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: var(--white);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border: none;
+  }
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #F0F2F5;
+    vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: #F8FAFD; }
+  tbody tr:hover { background: var(--bg-blue-1); transition: background 0.2s; }
+
+  /* ── Status Badges ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+  }
+  .badge.on-track     { background: var(--on-track-bg);  color: var(--on-track); }
+  .badge.on-track .badge-dot { background: var(--on-track); }
+  .badge.minor-issues      { background: var(--minor-issues-bg);   color: #946200; }
+  .badge.minor-issues .badge-dot  { background: var(--minor-issues); }
+  .badge.significant-issues    { background: var(--significant-issues-bg);  color: var(--significant-issues); }
+  .badge.significant-issues .badge-dot{ background: var(--significant-issues); }
+  .badge.back-on-track  { background: var(--back-on-track-bg);color: var(--back-on-track); }
+  .badge.back-on-track .badge-dot{ background: var(--back-on-track); }
+
+  /* Priority badges */
+  .priority {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .priority.high   { background: var(--significant-issues-bg); color: var(--significant-issues); }
+  .priority.medium { background: var(--minor-issues-bg);  color: #946200; }
+  .priority.low    { background: var(--bg-blue-1);   color: var(--primary); }
+
+  /* Impact badges */
+  .impact {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .impact.high   { background: var(--significant-issues-bg); color: var(--significant-issues); }
+  .impact.medium { background: var(--minor-issues-bg);  color: #946200; }
+  .impact.low    { background: var(--bg-blue-1);   color: var(--primary); }
+
+  /* ── Key Takeaways ── */
+  .takeaways-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .takeaway-card {
+    background: var(--white);
+    border: 1px solid #E4EAF2;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 4px solid var(--primary-light);
+  }
+  .takeaway-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(9,30,66,0.12);
+  }
+  .takeaway-card.on-track   { border-left-color: var(--on-track); }
+  .takeaway-card.minor-issues{ border-left-color: var(--minor-issues); }
+  .takeaway-card.significant-issues  { border-left-color: var(--significant-issues); }
+  .takeaway-card.back-on-track{ border-left-color: var(--back-on-track); }
+  .takeaway-project {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .takeaway-text {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ── Gantt Chart ── */
+  .gantt-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .gantt-table { font-size: 12px; }
+  .gantt-table thead th {
+    padding: 10px 8px;
+    text-align: center;
+    font-size: 11px;
+  }
+  .gantt-table thead th:first-child {
+    text-align: left;
+    min-width: 160px;
+  }
+  .gantt-table tbody td {
+    padding: 8px;
+    text-align: center;
+    position: relative;
+    min-width: 70px;
+  }
+  .gantt-table tbody td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-dark);
+    min-width: 160px;
+  }
+  .gantt-bar {
+    height: 22px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+  .gantt-bar.on-track   { background: linear-gradient(90deg, #00875A, #36B37E); }
+  .gantt-bar.minor-issues    { background: linear-gradient(90deg, #FF8B00, #FFAB00); }
+  .gantt-bar.significant-issues  { background: linear-gradient(90deg, #DE350B, #FF5630); }
+  .gantt-bar.back-on-track{ background: linear-gradient(90deg, #0052CC, #4C9AFF); }
+
+  /* ── Print ── */
+  @media print {
+    body { background: white; padding: 0; }
+    .container { box-shadow: none; border-radius: 0; }
+    .takeaway-card:hover { transform: none; }
+    tbody tr:hover { background: inherit; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ═══════ HEADER ═══════ -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <h1>📊 Seguimiento de Programa - Cencosud</h1>
+        <div class="header-subtitle">One-Pager Ejecutivo</div>
+      </div>
+      <div class="overall-status">
+        <div class="status-dot-lg"></div>
+        GENERAL: EN CURSO
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-label">Project Manager</span>
+        <span class="meta-value">Mauricio Lopez</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Fecha del Reporte</span>
+        <span class="meta-value">Junio 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Fecha de Cierre</span>
+        <span class="meta-value">Variable</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Ultima actualizacion</span>
+        <span class="meta-value">Julio 13, 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ LEGEND ═══════ -->
+  <div class="legend-bar">
+    <div class="legend-item"><div class="legend-dot on-track"></div>En Curso</div>
+    <div class="legend-item"><div class="legend-dot minor-issues"></div>Incidencias Menores</div>
+    <div class="legend-item"><div class="legend-dot significant-issues"></div>Escalamiento</div>
+  </div>
+
+  <div class="content">
+
+  <!-- ═══════ 1. STATUS SNAPSHOT ═══════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <div class="section-title">Resumen de Status por Proyecto</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Cronograma</th>
+            <th>Presupuesto</th>
+            <th>Tecnico</th>
+            <th>Adopcion</th>
+            <th>Relacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CENCOSUD - GENERAL</strong></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge significant-issues"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge significant-issues"><span class="badge-dot"></td>
+          </tr>
+          <tr>
+            <td><strong>Supermercado Argentina</strong></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge significant-issues"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+          </tr>
+          <tr>
+            <td><strong>Easy Chile</strong></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+          </tr>
+          <tr>
+            <td><strong>Supermercado Chile</strong></td>
+            <td><span class="badge significant-issues"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></td>
+            <td><span class="badge significant-issues"><span class="badge-dot"></td>
+          </tr>
+          <tr>
+            <td><strong>Supermercado Peru</strong></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+          </tr>
+          <tr>
+            <td><strong>The Fresh Market USA</strong></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+            <td><span class="badge on-track"><span class="badge-dot"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════ 2. KEY TAKEAWAYS ═══════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💡</div>
+        <div class="section-title">Temas Generales</div>
+      </div>
+      <div class="takeaways-grid">
+        <div class="takeaway-card --minor-issues">
+          <div class="takeaway-project">REPORTES DE RESULTADOS</div>
+          <div class="takeaway-text">En revisión opciones para integrar resultados de todos los portales en un solo dashboard. Homologación en curso de los criterios de evaluación de proyectos en diferentes países, modelos de negocio y banderas.</div>
+        </div>
+        <div class="takeaway-card minor-issues">
+          <div class="takeaway-project">SEGURIDAD</div>
+          <div class="takeaway-text">En proceso de adopción de medidas adicionaes de seguridad requeridas por el área de Compliance. Negociaciones en curso sobre detalles de acceso y permiso para los equipos de soporte..</div>
+        </div>
+        <div class="takeaway-card minor-issues">
+          <div class="takeaway-project">ORGANIZACIÓN</div>
+          <div class="takeaway-text">Oportunidad para desarrollar un sistema de comunicación y gestión global de todos los proyectos de Cencosud para enfocar de mejor manera los recursos de Revionics a las áreas prioritarias para Cencosud.</div>
+        </div>
+    </div>
+
+
+    <!-- ═══════ 3. PROJECT STATUS DESCRIPTION ═══════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <div class="section-title">Status de Proyectos</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>General</th>
+            <th>Etapa</th>
+            <th>Porcentaje de avance</th>
+            <th>Fecha de Cierre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Supermercado Argentina</strong></td>
+            <td><span class="badge significant-issues"><span class="badge-dot"></span>Significant Issues</span></td>
+            <td>CIERRE</td>
+            <td>95%</td>
+            <td>Jul 2026</td>
+          </tr>
+          <tr>
+            <td><strong>Easy Chile</strong></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></span>Minor Issues</span></td>
+            <td>CIERRE</td>
+            <td>90%</td>
+            <td>Jul 2026</td>
+          </tr>
+          <tr>
+            <td><strong>Supermercado Chile</strong></td>
+            <td><span class="badge minor-issues"><span class="badge-dot"></span>Minor Issues</span></td>
+            <td>PRE-IMPLEMENTACIÓN </td>
+            <td>40%</td>
+            <td>Nov 2026</td>
+          </tr>
+          <tr>
+            <td><strong>Supermercado Peru</strong></td>
+            <td><span class="badge on-track"><span class="badge-dot"></span>On Track</span></td>
+            <td>INICIO</td>
+            <td>5%</td>
+            <td>Feb 2027</td>
+          <tr>
+            <td><strong>The Fresh Market USA</strong></td>
+            <td><span class="badge on-track"><span class="badge-dot"></span>On Track</span></td>
+            <td>INICIO</td>
+            <td>5%</td>
+            <td>Feb 2027</td>
+          </tr>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════ 2. DESGLOSE - STATUS POR PROYECTO═══════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <div class="section-title">Desglose - Status por Proyecto</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Tema</th>
+            <th>Seguimiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CENCOSUD - GENERAL</td>
+            <td>La mayoría de los proyectos han tenido cambios menores en el cronograma, a excepción de SM Chile, con retrasos significativos. A nivel técnico, el problema de Mantenimiento Masivo es considerado de Alto Impacto en Revionics. Necesidad de reestablecer relaciones a nivel ejecutivo entre Revionics y Cencosud.</td>
+            <td>Ajustes y priorización de actividades para responder a los temas que han surgido en los distintos proyectos.</td>
+          </tr>
+          <tr>
+            <td>Supermercado Argentina</td>
+            <td>El tema pendiente más relevante es la estabilización del proceso de Mantenimiento Masivo, que requiere ajustes para afrontar la particularidad de uso en Argentina.</td>
+            <td>El equipo de Operaciones de Revionics está atendiendo este tema como prioritario en esta semana. Se espera que esta semana se llegue a una resolución o al menos claridad sobre lo requerido, enfocados en tener la configuración lista para la próxima instancia de MM.</td>
+          </tr>
+          <tr>
+            <td>Easy Chile</td>
+            <td>La adopción ha sido menor en comparación con SM Argentina. Se mantienen pequeñas variaciones en la información de ventas debido a productos vendidos que no se envían a Revionics.</td>
+            <td>Carlos Acosta ha incrementado la interaccion con el equipo de Pricing para mejorar su nivel de adopción. Revisión con el equipo técnico de Cencosud para incluir productos pendientes en el envío de datos a Revionics.</td>
+          </tr>
+          <tr>
+            <td>Supermercado Chile</td>
+            <td>Cambios en la infraestructura y en el equipo de negocio han provocado retrasos significativos, con un estimado de 3 meses de diferencia vs la planeación original.</td>
+            <td>Se han ajustado las actividades del proyecto para reducir el impacto de etos cambios en el presupuesto y alance del proyecto en general. Se ha dedicado tiempo adicional para integrar a nuevos miembros del equipo a la dinpamica del proyecto.</td>
+          </tr>
+          <tr>
+            <td>Supermercado Peru</td>
+            <td>Involucramiento activo del equipo técnico y de negocio durante las sesiones de Discovery.</td>
+            <td>Se continua el proceso de planeación, oportunidad de acortar tiempos gracias a la experiencia con otros proyectos de Cencosud.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════ 4. NEXT STEPS ═══════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <div class="section-title">Next Steps</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Action Item</th>
+            <th>Project</th>
+            <th>Owner</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Complete additional hours formalization</td>
+            <td>Supermercado Argentina</td>
+            <td>Mauricio Lopez</td>
+            <td>Jul 08, 2026</td>
+            <td><span class="priority high">High</span></td>
+          </tr>
+          <tr>
+            <td>Confirm latest data validation</td>
+            <td>Easy Chile</td>
+            <td>Carlos Acosta</td>
+            <td>Jul 10, 2026</td>
+            <td><span class="priority high">High</span></td>
+          </tr>
+          <tr>
+            <td>Pre-rollout on-site follow-up</td>
+            <td>Supermercado Chile</td>
+            <td>Carlos Acosta</td>
+            <td>Jul 06, 2026</td>
+            <td><span class="priority medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Discovery documentation delivery</td>
+            <td>Supermercado Peru</td>
+            <td>Lina Montoya / Victor Espinal</td>
+            <td>Jul 15, 2026</td>
+            <td><span class="priority medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Attend Cencosud's multi-project reporting requirements communicated by Orland Vergara.</td>
+            <td>MULTI-PROJECT</td>
+            <td>Mauricio Lopez</td>
+            <td>TBD</td>
+            <td><span class="priority high">High</span></td>
+          </tr>
+          <tr>
+            <td>Coordinate the formalization of Security-related agreements between Revionics and Cencosud.</td>
+            <td>MULTI-PROJECT</td>
+            <td>Mauricio Lopez</td>
+            <td>TBD</td>
+            <td><span class="priority high">High</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- ═══════ 5. POTENTIAL RISKS ═══════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">⚠️</div>
+        <div class="section-title">Potential Risks</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Risk Description</th>
+            <th>Project</th>
+            <th>Impact</th>
+            <th>Mitigation Plan</th>
+            <th>Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Instability of the portal due to recent extreme uses</td>
+            <td>Supermercado Argentina</td>
+            <td><span class="impact medium">Medium</span></td>
+            <td>Potential solution is to transfer to 24/7 support.</td>
+            <td>Mauricio Lopez</td>
+          </tr>
+          <tr>
+            <td>Lower adoption of Revionics vs other Cencosud projects.</td>
+            <td>Easy Chile</td>
+            <td><span class="impact high">High</span></td>
+            <td>Use Carlos Acosta's visit to Chile to incentivize the use of the Revionics platform.</td>
+            <td>Carlos Acosta</td>
+          </tr>
+          <tr>
+            <td>Low decision-making capacity from the business due to all the changes in Pricing and Commercial structure.</td>
+            <td>Supermercado Chile</td>
+            <td><span class="impact medium">Medium</span></td>
+            <td>Closer follow-up to the business team.</td>
+            <td>Carlos Acosta</td>
+          </tr>
+          <tr>
+            <td>Data reuploads still happening, weeks before the rollout.</td>
+            <td>Supermercado Chile</td>
+            <td><span class="impact high">High</span></td>
+            <td>Complete last data reupload requests and conduct a second BUDV.</td>
+            <td>Rick Doyle / Mauricio Lopez</td>
+          </tr>
+          <tr>
+            <td>Lack of internal clarity regarding multi-project Cencosud reporting options</td>
+            <td>MULTI PROJECT</td>
+            <td><span class="impact low">Low</span></td>
+            <td>Organize internal Revionics' follow up and understanding our options to address this request.</td>
+            <td>Mauricio Lopez</td>
+          </tr>
+          <tr>
+            <td>Uncertainty regarding Revionics' capacity to address the multiple security requirements from Cencosud.</td>
+            <td>MULTI PROJECT</td>
+            <td><span class="impact high">High</span></td>
+            <td>Set up more concrete deadlines with the Product team to address the developments needed for Security-related requests.</td>
+            <td>Mauricio Lopez</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <div class="footer">
+    <div class="footer-note">💡 </div>
+  </div>
+
+</div>
+</body>
+</html>
